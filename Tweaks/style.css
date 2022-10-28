@@ -1,0 +1,116 @@
+*{
+    margin: 0px;
+    padding: opx;
+    box-sizing: border-box;
+  }
+  
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #16191c;
+    min-height: 8vh;
+    padding: 0px 150px;
+  }
+  .logo a{
+    letter-spacing: 5px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+  }
+  .nav-links{
+    display: flex;
+    justify-content: space-around;
+    padding: 0px 10px;
+  }
+  .nav-links li{ 
+    list-style: none;
+    margin: 10px;
+  }
+  .nav-links a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Arial;
+    padding: 10px;
+    border-radius: 30px;
+    transition: 0.2s;
+  }
+  .nav-links a:hover{
+    color: black;
+    background-color: white;
+  }
+  .nav-links a.active{
+    color: black;
+    background-color: white;
+  }
+  @media only screen and (max-width: 1150px) {
+    nav{
+      padding: 0px 50px;
+    }
+  }
+  @media only screen and (max-width: 900px) {
+    .hamburger {
+      display: block;
+      cursor: pointer;
+    }
+    .line{
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin:  6px 0;
+    }
+    .nav-links.active{
+      height: 450px;
+    }
+    .nav-links{
+      display: block;
+      height: 0px;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      background: #16191c;
+      transition: 0.2s;
+      overflow: hidden;
+    }
+    .nav-links.active li{
+      opacity: 100%;
+    }
+    .nav-links li{
+      width: fit-content;
+      margin: 80px auto 0 auto;
+      text-align: center;
+      transition: 0.4s;
+      opacity: 0;
+    }
+    .nav-links li a{
+      margin-bottom: 12px;
+    }
+  }
+  .content{
+    
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+    font-family: Arial;
+  }
+  .content h1{
+    font-size: 40px;
+    padding: 40px;
+  }
+  .content i{
+    color: gray;
+  }
+  .content h2{
+    font-size: 30px;
+    margin: 20px;
+  }
+  .content p{
+    padding: 20px;
+    margin: 10px;
+  }

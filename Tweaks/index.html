@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <a href="index.html">Home</a>
+    </div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="Assignments/Assignment1.html">Assignment#1</a>
+      </li>
+      <li>
+        <a href="Assignments/Assignment2.html">Assignment#2</a>
+      </li>
+      <li>
+        <a href="Assignments/Assignment3.html">Assignment#3</a>
+      </li>
+      <li>
+        <a href="Assignments/Assignment4.html">Assignment#4</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+    <h1>CS 1130 - Intro to Computing</h1>
+    <i>by Maria Corazon D. Gomez - Student</i>
+    <h2>Assignments:</h2>
+    <p>Assignment #1 - Conversion (Celsius to Fahrenheit, Fahrenheit to Celsius, Meters to Feet, Feet to Meters)</p>
+    <p>Assignment #2 - Income Tax Calculator</p>
+    <p>Assignment #3 - Factorial, Sum and Average of First N Natural Numbers</p>
+    <p>Assignment #4 - Simple Payroll</p>
+    <a href="https://mcdgomez.github.io/mcdgomez.github.io-mywebsite/">See the source files</a>
+  </div>
+  <script>
+     hamburger = document.querySelector(".hamburger");
+     hamburger.onclick = function() {
+        navBar = document.querySelector(".nav-links");
+        navBar.classList.toggle("active");
+     }
+  </script>
+</body>
+</html>
