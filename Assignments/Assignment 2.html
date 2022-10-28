@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment2</title>
+    <style>
+        *{
+        margin: 0px;
+        padding: opx;
+        box-sizing: border-box;
+        }
+
+        nav{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #16191c;
+          min-height: 8vh;
+          padding: 0px 150px;
+        }
+        .logo a{
+          letter-spacing: 5px;
+          font-size: 20px;
+          text-decoration: none;
+          color: white;
+          text-transform: uppercase;
+        }
+        .nav-links{
+          display: flex;
+          justify-content: space-around;
+          padding: 0px 10px;
+        }
+        .nav-links li{ 
+          list-style: none;
+          margin: 10px;
+        }
+        .nav-links a{
+          color: white;
+          text-decoration: none;
+          letter-spacing: 2px;
+          font-weight: bold;
+          font-size: 15px;
+          font-family: Arial;
+          padding: 10px;
+          border-radius: 30px;
+          transition: 0.2s;
+        }
+        .nav-links a:hover{
+          color: black;
+          background-color: white;
+        }
+        .nav-links a.active{
+          color: black;
+          background-color: white;
+        }
+        @media only screen and (max-width: 1150px) {
+          nav{
+            padding: 0px 50px;
+          }
+        }
+        @media only screen and (max-width: 900px) {
+          .hamburger {
+            display: block;
+            cursor: pointer;
+          }
+          .line{
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin:  6px 0;
+          }
+          .nav-links.active{
+            height: 450px;
+          }
+          .nav-links{
+            display: block;
+            height: 0px;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background: #16191c;
+            transition: 0.2s;
+            overflow: hidden;
+          }
+          .nav-links.active li{
+            opacity: 100%;
+          }
+          .nav-links li{
+            width: fit-content;
+            margin: 80px auto 0 auto;
+            text-align: center;
+            transition: 0.4s;
+            opacity: 0;
+          }
+          .nav-links li a{
+            margin-bottom: 12px;
+          }
+        }
+        .content{
+          display:block;
+          max-width: 800px;
+          margin: auto;
+          margin-top: 40px;
+        }
+        
+        .wrapper{
+          width: 800px;
+          height: 720px;
+          border: 5px solid black;
+          border-radius: 10px;
+          margin-bottom: 30px;
+          
+        }
+        .description {
+          padding: 10px;
+        }
+
+        .inner-content{
+          display: grid;
+          justify-content: center;
+          margin-top: 20%;
+        }
+        .result {
+          margin-top: 20px;
+          display:  flex;
+        }
+        .result p{
+          margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <a href="../index.html">Home</a>
+    </div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="Assignment1.html">Assignment#1</a>
+      </li>
+      <li>
+        <a href="Assignment2.html">Assignment#2</a>
+      </li>
+      <li>
+        <a href="Assignment3.html">Assignment#3</a>
+      </li>
+      <li>
+        <a href="Assignment4.html">Assignment#4</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+        <div class="wrapper">
+          <div class="description">
+            <h1>Assignment#2</h1>
+            <h3>Income Tax Calculator</h3>
+          </div>
+          <div class="inner-content">
+            <div class="compute">
+              <input type="number" name="taxable" id="taxable">
+              <button onclick="compute()">Compute</button>
+            </div>
+            <div class="result">
+              <label style="font-weight:bold ;">Result: </label>
+              <p class="textRes" id="text-result"></p>
+            </div>
+          </div>
+        </div> 
+    </div>
+    <script>
+      const number = document.getElementById("taxable")
+      const result = document.getElementById("text-result")
+
+      function compute(){
+        const x = number.value
+        let excess, rate, fixed 
+
+        if(x <= 250000){
+          excess = 0
+          rate = 0
+          fixed = 0
+        }else if (x <= 400000){
+          excess = 250000
+          rate = 0.20
+          fixed = 0
+        }else if(x <= 800000){
+          excess = 400000
+          rate = 0.25
+          fixed = 30000 
+        }else if(x <= 2000000){
+          excess = 800000
+          rate = 0.30
+          fixed = 130000
+        }else if(x <= 8000000){
+          excess = 2000000
+          rate = 0.32
+          fixed = 490000
+        } else{
+          excess = 8000000
+          rate = 0.35
+          fixed = 2410000
+        }
+        const incomeTax = (x - excess)*rate + fixed
+        result.innerHTML = 'The income tax is '+ incomeTax
+      }
+      hamburger = document.querySelector(".hamburger");
+      hamburger.onclick = function() {
+        navBar = document.querySelector(".nav-links");
+        navBar.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

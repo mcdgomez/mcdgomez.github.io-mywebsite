@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment3</title>
+    <style>
+        *{
+        margin: 0px;
+        padding: opx;
+        box-sizing: border-box;
+        }
+
+        nav{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #16191c;
+          min-height: 8vh;
+          padding: 0px 150px;
+        }
+        .logo a{
+          letter-spacing: 5px;
+          font-size: 20px;
+          text-decoration: none;
+          color: white;
+          text-transform: uppercase;
+        }
+        .nav-links{
+          display: flex;
+          justify-content: space-around;
+          padding: 0px 10px;
+        }
+        .nav-links li{ 
+          list-style: none;
+          margin: 10px;
+        }
+        .nav-links a{
+          color: white;
+          text-decoration: none;
+          letter-spacing: 2px;
+          font-weight: bold;
+          font-size: 15px;
+          font-family: Arial;
+          padding: 10px;
+          border-radius: 30px;
+          transition: 0.2s;
+        }
+        .nav-links a:hover{
+          color: black;
+          background-color: white;
+        }
+        .nav-links a.active{
+          color: black;
+          background-color: white;
+        }
+        @media only screen and (max-width: 1150px) {
+          nav{
+            padding: 0px 50px;
+          }
+        }
+        @media only screen and (max-width: 900px) {
+          .hamburger {
+            display: block;
+            cursor: pointer;
+          }
+          .line{
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin:  6px 0;
+          }
+          .nav-links.active{
+            height: 450px;
+          }
+          .nav-links{
+            display: block;
+            height: 0px;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background: #16191c;
+            transition: 0.2s;
+            overflow: hidden;
+          }
+          .nav-links.active li{
+            opacity: 100%;
+          }
+          .nav-links li{
+            width: fit-content;
+            margin: 80px auto 0 auto;
+            text-align: center;
+            transition: 0.4s;
+            opacity: 0;
+          }
+          .nav-links li a{
+            margin-bottom: 12px;
+          }
+        }
+        .content{
+          display:block;
+          max-width: 800px;
+          margin: auto;
+          margin-top: 40px;
+        }
+        
+        .wrapper{
+          width: 800px;
+          height: 720px;
+          border: 5px solid black;
+          border-radius: 10px;
+          margin-bottom: 30px;
+        }
+        .description {
+          padding: 10px;
+        }
+        .input-area{
+          display: grid;
+          justify-content: center;
+          margin-top: 30px;
+        }
+        .result {
+          display: flex;
+          justify-content: center;
+          justify-content: space-evenly;
+          margin-top: 15%;
+        }
+        .result label{
+          font-weight: bold;
+        }
+    </style>
+</head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="../index.html">Home</a>
+      </div>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="Assignment1.html">Assignment#1</a>
+        </li>
+        <li>
+          <a href="Assignment2.html">Assignment#2</a>
+        </li>
+        <li>
+          <a href="Assignment3.html">Assignment#3</a>
+        </li>
+        <li>
+          <a href="Assignment4.html">Assignment#4</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="wrapper">
+        <div class="description">
+          <h1>Assignment#3</h1>
+          <h3>Factorial, Sum and Average of First N Natural Numbers</h3>
+        </div>
+
+        <div class="inner-content">
+          <div class="input-area">
+            <input type="number" id="number" name="number">
+            <label for="number"style="padding-left: 15px;">Input a integer value n</label>
+            <button onclick="nthFactorial(); sumFirstN(); AverageN()">Compute</button>
+          </div>
+          
+          <div class="result">
+            <div class="result-box">
+              <label>N!</label>
+              <p id="nthFac-id"></p>
+            </div>
+            <div class="result-box">
+              <label>Sum of the First N</label>
+              <p id="sumN" ></p>
+            </div>
+            
+            <div class="result-box">
+              <label>Average of the First N</label>
+              <p id="AverageN"></p>
+            </div>
+          </div>
+        </div>
+
+      </div> 
+  </div>
+  <script>
+    const integer = document.getElementById("number")
+    const res1 = document.getElementById("nthFac-id")
+    const res2 = document.getElementById("sumN")
+    const res3 = document.getElementById("AverageN")
+
+    function nthFactorial () {
+      var x = integer.value
+      let i = 1,nth = i;
+      
+      while(x >= i){
+        nth *= i  
+        i++;
+      }
+      res1.innerHTML = nth
+    }
+    function sumFirstN() {
+      var x = integer.value
+      let i = 1,nth = 0;
+
+      do{
+        nth += i  
+        i++;
+      }while(x >= i)
+      
+      res2.innerHTML = nth
+    }
+    function AverageN () {
+      var x = integer.value
+      let nth = 0;
+      
+      for(let i = 1; i < x;i++){
+        nth += i;
+      }
+      let result = nth/x
+      res3.innerHTML = result 
+    }
+    hamburger = document.querySelector(".hamburger");
+    hamburger.onclick = function() {
+        navBar = document.querySelector(".nav-links");
+        navBar.classList.toggle("active");
+    }
+  </script>
+  </body>
+</html>

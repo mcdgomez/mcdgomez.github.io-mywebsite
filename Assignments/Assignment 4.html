@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <style>
+        *{
+        margin: 0px;
+        padding: opx;
+        box-sizing: border-box;
+        }
+
+        nav{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #16191c;
+          min-height: 8vh;
+          padding: 0px 150px;
+        }
+        .logo a{
+          letter-spacing: 5px;
+          font-size: 20px;
+          text-decoration: none;
+          color: white;
+          text-transform: uppercase;
+        }
+        .nav-links{
+          display: flex;
+          justify-content: space-around;
+          padding: 0px 10px;
+        }
+        .nav-links li{ 
+          list-style: none;
+          margin: 10px;
+        }
+        .nav-links a{
+          color: white;
+          text-decoration: none;
+          letter-spacing: 2px;
+          font-weight: bold;
+          font-size: 15px;
+          font-family: Arial;
+          padding: 10px;
+          border-radius: 30px;
+          transition: 0.2s;
+        }
+        .nav-links a:hover{
+          color: black;
+          background-color: white;
+        }
+        .nav-links a.active{
+          color: black;
+          background-color: white;
+        }
+        @media only screen and (max-width: 1150px) {
+          nav{
+            padding: 0px 50px;
+          }
+        }
+        @media only screen and (max-width: 900px) {
+          .hamburger {
+            display: block;
+            cursor: pointer;
+          }
+          .line{
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin:  6px 0;
+          }
+          .nav-links.active{
+            height: 450px;
+          }
+          .nav-links{
+            display: block;
+            height: 0px;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background: #16191c;
+            transition: 0.2s;
+            overflow: hidden;
+          }
+          .nav-links.active li{
+            opacity: 100%;
+          }
+          .nav-links li{
+            width: fit-content;
+            margin: 80px auto 0 auto;
+            text-align: center;
+            transition: 0.4s;
+            opacity: 0;
+          }
+          .nav-links li a{
+            margin-bottom: 12px;
+          }
+        }
+        .content{
+          display:block;
+          max-width: 800px;
+          margin: auto;
+          margin-top: 40px;
+        }
+        
+        .wrapper{
+          width: 800px;
+          height: 720px;
+          border: 5px solid black;
+          border-radius: 10px;
+          margin-bottom: 30px;
+        }
+        .description {
+          padding: 10px;
+        }
+        
+        .leftside{
+          position: relative;
+          display: grid;
+          float:left;
+          margin:10px;
+        }
+        .rightside{
+          background-color: gray;
+          float:right;
+          height: 600px;
+          width: 550px;
+          margin-right: 20px;
+          border-radius: 10px;
+          overflow: auto;
+        }
+    </style>
+</head>
+<body onload="initEmp()">
+  <nav>
+    <div class="logo">
+      <a href="../index.html">Home</a>
+    </div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="Assignment1.html">Assignment#1</a>
+      </li>
+      <li>
+        <a href="Assignment2.html">Assignment#2</a>
+      </li>
+      <li>
+        <a href="Assignment3.html">Assignment#3</a>
+      </li>
+      <li>
+        <a href="Assignment4.html">Assignment#4</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+    <div class="wrapper">
+      <div class="description">
+        <h1>Assignment#4</h1>
+        <h3>Simple Payroll</h3>
+      </div>
+      <div class="inner-content">
+        <div class="leftside">
+          <label for="itemdesc">Employee Name</label>
+          <input type="text" name="name" id="name">
+          <label for="qty">Days Work</label>
+          <input type="number" name="days-work" id="days-work">
+          <label>Daily Rate</label>
+          <input type="number" name="daily-rate" id="daily-rate">
+          <label for="deduction-amount">Deduction Amount</label>
+          <input type="number" name="deduction-amount" id="deduction-amount">
+          <button onclick="addEmployee()">Add Employee</button>
+          <br>
+          <label for="numberEmp">Employee Count</label>
+          <input type="number" name="numberEmp" id="numberEmp" readonly>
+          <label for="N">Remove Employee</label>
+          <input type="number" name="no" id="no">
+          <button onclick="removeEmployee()">Remove Employee</button>
+          <br>
+          <br>
+          <button onclick="removeAll()">Remove All</button>
+        </div>
+        <div class="rightside">
+          <p id="list"></p>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <script>
+    const employeeName = document.getElementById("name")
+    const daysWork = document.getElementById("days-work")
+    const dailyRate = document.getElementById("daily-rate")
+    const deductionAmount = document.getElementById("deduction-amount")
+    const employeeCount = document.getElementById("numberEmp")
+    const RemoveEmp = document.getElementById("no")
+    var cart = []
+
+    function initEmp(){
+      cart=[]
+      employeeCount.value = cart.length
+      document.getElementById("list").innerHTML= ""
+    }
+
+    function addEmployee(){
+
+      var employee = {
+        name: "",
+        days: 1,
+        rate: 1,
+        deduction: 1,
+        gross: 1,
+        net: 1
+      }
+      employee.name = employeeName.value
+      employee.days = daysWork.value
+      employee.rate = dailyRate.value
+      employee.deduction = deductionAmount.value
+      employee.gross = employee.days * employee.rate
+      employee.net = employee.gross - employee.deduction
+
+      console.log(employee)
+      cart.push(employee)
+      employeeCount.value = cart.length
+      showCart();
+    }
+
+    function removeEmployee(){
+      var id = RemoveEmp.value
+      var toDelete;
+
+      toDelete = confirm("Delete item no. "+id+"?")
+      if(toDelete){
+        cart.splice(id-1,1)
+        employeeCount.value = cart.length
+        showCart()
+      }
+    }
+    function removeAll(){
+      var toDelete;
+
+      toDelete = confirm("Are you sure you want to remove all Employees?")
+      if(toDelete){
+        initEmp()
+      }
+    }
+    function showCart(){
+      var theader = "<thead>"
+        +"<tr>"
+        +'<th style="text-align: center">No.</th>'
+        +'<th style="text-align: center">Employee Name'
+        +'<th style="text-align: center">Days Worked</th>'
+        +'<th style="text-align: center">Daily Rate</th>'
+        +'<th style="text-align: center">Gross Pay</th>'
+        +'<th style="text-align: center">Deduction Amount</th>'
+        +'<th style="text-align: center">Net Pay</th>'
+        +"</tr>"
+        +"</thead>"
+        
+        var tbody = ''
+        for(let i = 0;i < cart.length; i++){
+          tbody += "<tr>"
+            + '<td style="text-align: center">'+(i+1)+'</td>'
+            + '<td style="text-align: center">'+cart[i].name+'</td>'
+            + '<td style="text-align: center">'+cart[i].days+'</td>'
+            + '<td style="text-align: center">'+cart[i].rate+'</td>'
+            + '<td style="text-align: center">'+cart[i].gross+'</td>'
+            + '<td style="text-align: center">'+cart[i].deduction+'</td>'
+            + '<td style="text-align: center">'+cart[i].net+'</td>'
+            + '</tr>'
+        }
+       document.getElementById("list").innerHTML="<table>"+theader+tbody+"</table>"
+    }
+
+
+    hamburger = document.querySelector(".hamburger");
+    hamburger.onclick = function() {
+        navBar = document.querySelector(".nav-links");
+        navBar.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
